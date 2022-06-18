@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: hello-world-ingress
+  namespace: ingress-demo
+  labels:
+    name: hello-world-ingress
+spec:
+  rules:
+  - host: myminikube.demo
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/hello"
+        backend:
+          service:
+            name: hello-svc
+            port:
+              number: 8080
