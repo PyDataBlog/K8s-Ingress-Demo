@@ -1,5 +1,5 @@
-kubectl apply -f Namespaces/hello_namespace.yaml && \
-kubectl apply -f Deployments/hello_deployment.yaml && \
-kubectl apply -f Services/hello_service.yaml && \
-kubectl apply -f Ingresses/hello_ingress.yaml && \
-echo "Hello World! I'm deployed on Kubernetes!"
+# For each yaml file in these directories [Namespaces, Deployments, Services, Ingresses] (named hello_*) , apply them to the cluster.
+for yaml_file in $(find Namespaces Deployments Services Ingresses -name "hello_*" -type f); do
+    kubectl apply -f $yaml_file
+done
+echo "Hello World app deployed on the cluster!"
