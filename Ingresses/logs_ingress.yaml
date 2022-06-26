@@ -1,11 +1,18 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
   name: logs-ingress
   namespace: kube-system
   labels:
     name: logs-ingress
 spec:
+  tls:
+    - hosts:
+        - logs.myminikube.demo
+      secretName: mkcert-tls-secret
   rules:
   - host: logs.myminikube.demo
     http:
