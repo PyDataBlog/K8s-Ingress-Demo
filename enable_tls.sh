@@ -2,6 +2,7 @@ if kubectl create secret -n kube-system tls mkcert-tls-secret --cert=Secrets/_wi
     echo "TLS secret created"
 else
     echo "TLS secret already exists?"
+    exit 1
 fi && \
 minikube addons configure ingress <<< "kube-system/mkcert-tls-secret" && \
 minikube addons disable ingress && \
